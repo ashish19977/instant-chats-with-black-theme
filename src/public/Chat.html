@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./js/checktoken.js"></script>
+    <link rel="stylesheet" href="./css/chat2.css" type="text/css">
+    <title>Chat</title>
+</head>
+<body>
+    <div class="green"></div>
+    <div class="container">
+
+        <!-- modal -->
+        <div id="modal">
+            <div class="modal-header">
+                <div class="room-info"></div>
+                    <button class="hide-modal-btn" style="width: 30%;" onclick="hideModal()">Close</button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-header">
+                <button class="hide-modal-btn" onclick="hideModal()">Close</button>
+            </div>
+        </div>
+        <!-- modal ends here -->
+
+        <div class="room-container">
+            <div class="info-container">
+                <i class="fa fa-users"></i>
+                <div style="color: orange;overflow: hidden;" id="roomname"></div>
+            </div>
+            <div class="user-container">
+                <!-- users in room -->
+            </div>
+        </div>
+
+        <!-- chat container -->
+        <div class="chat-container">
+            <div class="info-container">
+                <i class="fa fa-user-circle"></i>
+                <div style="color: orange;overflow: hidden;" id="username"></div>
+                <i class="fa fa-users" id="userModalIcon" onclick="showModal()"></i>
+                <i class="fa fa-sign-out" onclick="exit()"></i>
+                <!-- slider -->
+                <div id="slider-main" onclick="changeTheme()">
+                    <div id="circle"></div> 
+                </div>
+                 <!-- slider -->
+            </div>
+            <div class="message-container">
+                <!-- here message templates will render -->
+            </div>
+
+            <!-- message control container -->
+            <div class="send-message-container">
+                <div id="loader"></div>
+                <i class="fa fa-picture-o" onclick="openFiles()" id="img-btn"></i>
+                <textarea rows="2" placeholder="Enter message here" id="input" class="input"></textarea>
+                <input type="file" id="file" style="display: none" onchange="sendPic(event)" accept=".png , .jpeg,.jpg">
+                    <i class="fa fa-paper-plane" id="send-btn"></i>
+                    <i class="fa fa-map-marker" id="location-btn"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- templates -->
+    <script type="text/html" id="message-sent-temp">
+        <div class="message" id="message-sent" style=" margin: 1% 3% 0 auto;background-color: #21618c ;float: right">
+            <span class="user">{{user}}</span>
+            <span class="message-content">{{message}}</span>
+            <span class="time">{{time}}</span>
+        </div>
+    </script>
+
+    <script type="text/html" id="message-rec-temp">
+        <div class="message" id="message-recieved" style="margin: 1% auto 0 3%;background-color: #5d6d7e;float: left">
+            <span class="user">{{user}}</span>
+            <span class="message-content">{{message}}</span>
+            <span class="time">{{time}}</span>
+        </div>
+    </script>
+    <script type="text/html" id="location-temp">
+        <div class="message" id="message-recieved" style="margin: 1% auto 0 3%;background-color: #5d6d7e;float: left">
+            <span class="user">{{user}}</span>
+            <span  class="message-content">I have share my <a href={{location}} class="location" target="_blank">location</a></span>
+            <span class="time">{{time}}</span>
+        </div>
+    </script>
+
+    <!-- image tempaltes -->
+    <script type="text/html" id="image-rec-temp">
+        <div class="message" id="message-recieved" style="margin: 1% auto 0 3%;background-color: #5d6d7e;float: left">
+            <span class="user">{{user}}</span>
+            <img src={{file}} style="height:210px;width:280px;border-radius:5px">
+            <span class="time">{{time}}</span>
+        </div>
+    </script>
+    <script type="text/html" id="image-sent-temp">
+        <div class="message" id="message-sent" style=" margin: 1% 3% 0 auto;background-color: #21618c ;float: right">
+            <span class="user">{{user}}</span>
+            <img src={{file}} style="height:210px;width:280px;border-radius:5px">
+            <span class="time">{{time}}</span>
+        </div>
+    </script>
+    <!-- image templates -->
+    <script type="text/html" id="users-in-room-temp">
+        {{#allUsers}}
+    <div class="users-in-room">
+        <p class="username" style="color: orange;overflow: hidden;">{{userName}}</p>
+        <!-- <i class="fa fa-times" style="font-size: medium;"></i> -->
+    </div>
+        {{/allUsers}}
+    </script>
+    <script type="text/html" id="user-temp">
+        {{#allUsers}}
+        <span>{{userName}}</span>
+        {{/allUsers}}
+    </script>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>
+<script src="./js/chat.js"></script>
+<script src='./js/actions.js'></script>
+</html>

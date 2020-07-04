@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <style>
+        body, html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+        body{
+            background-color: rgba(0,0,0,.8);
+        }
+        .main{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form{
+            padding: 2em 1em 2em 1em;
+            width: 60%;
+            border-radius: 1em;
+            display: flex;
+            box-shadow:0 0 3px #888888;
+            justify-content: space-evenly;
+            flex-direction:column;
+        }
+        .logo{
+            background-color: #0169ff ;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            margin-bottom: 2em;
+            font-size: large;
+            color: white;
+           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+        }
+        .btn{
+            background-color:#0169ff;
+            border: none;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 10px;
+            margin: 0 3em 2em 3em;
+            border-radius: 5px;
+            color: whitesmoke;
+        }
+        p{
+            text-align: center;
+            margin: 0 3em 1em 3em;
+            border-radius: 5px;
+            background-color:   #fadbd8   ;
+            padding: 5px;
+            visibility: hidden;
+            color:  #b03a2e ;
+        }
+        input{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin:0 2em 2em 2em;
+            border-radius: 5px;
+            border: 1px gray solid;
+            text-align: center;
+            padding: 8px;
+        }
+        .input:focus{
+            border: 2px   #2eb7fc  solid;
+        }
+        .logo-pic{
+            border-radius: 50%;
+            border: 2px black solid;
+            margin:.5em 2em .5em 2em;
+            height: 60%;
+            width: 5%;
+        }
+        
+        /* media query */
+        
+        @media only screen and (max-width: 1090px){
+        .form{width: 100%;height: 60%;box-shadow: none;}
+        .input, .btn, .logo,p{padding:20px;font-size: 2em;margin: 0;}
+        .input:focus{border-width:6px;}
+        .btn{padding: 25px;}
+        }
+    </style>
+    <!-- <link rel="stylesheet" href="./css/home.css" type="text/css"> -->
+</head>
+<body>
+    <div class="main">
+        <form class="form" id="form1" method="POST">
+            <div class="logo">
+                <img src="./assets/logo.png" class="logo-pic">
+               Instant Chats
+            </div>
+            <input type="text" class="input" name="roomName" id="room" placeholder="Room name here" autofocus autocomplete="off" required>
+            <input type="text" class="input" name="userName" id="user" placeholder="Username name here" required autocomplete="off">
+            <p id="alert">alert message goes here</p>
+            <button type="submit" id="jn-btn" class="btn" autofocus>Join Room</button>
+            <button type="submit" id="crt-btn" class="btn">Create Room</button>
+        </form> 
+        </div>       
+</body>
+<script src="./js/home.js"></script>
+</html>
